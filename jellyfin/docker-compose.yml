@@ -1,0 +1,22 @@
+version: '3.5'
+
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    hostname: jellyfin-docker
+    restart: unless-stopped
+    networks:
+      - jelly-net 
+    ports:
+      - "127.0.0.1:8096:8096"
+    volumes:
+      - ./config:/config
+      - ./cache:/cache
+      - /home/samba/media:/media
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
+      - /dev/dri/card0:/dev/dri/card0
+
+networks:
+  jelly-net:
