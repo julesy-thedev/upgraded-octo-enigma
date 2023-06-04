@@ -2,6 +2,7 @@ version: '3.5'
 
 volumes:
   nextcloud_root:
+  nextcloud_data:
   db:
 
 networks:
@@ -34,7 +35,7 @@ services:
     ports:
       - "127.0.0.1:8080:80"
     volumes:
-      - /home/docker/volumes/nextcloud_data:/srv/nextcloud/data
+      - nextcloud_data:/srv/nextcloud/data
       - nextcloud_root:/var/www/html
     environment:
       - MYSQL_DATABASE=nextcloud
